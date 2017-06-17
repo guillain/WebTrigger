@@ -1,0 +1,54 @@
+/*
+ @ Target: MySQL structure
+ @ Version: 0.1
+ @ Date: 2017/02/04
+ @ Author: Guillain (guillain@gmail.com)
+ @ Copyright 2017 GPL - Guillain
+*/
+
+drop table if exists users;
+create table users (
+  uid integer primary key auto_increment,
+  login varchar(32) not null,
+  email varchar(64) not null,
+  webhook varchar(256) not null,
+  mobile varchar(16) not null,
+  pw_hash text not null,
+  accesstoken text not null,
+  creationdate date not null,
+  UNIQUE KEY (login),
+  UNIQUE KEY (email)
+);
+
+drop table if exists groups;
+create table groups (
+  gid integer primary key auto_increment,
+  name varchar(32) not null,
+  description text not null,
+  creationdate date,
+  UNIQUE KEY (name)
+);
+
+drop table if exists mapping;
+create table mapping (
+  mid integer primary key auto_increment,
+  uid integer,
+  gid integer,
+  admin boolean,
+  moder boolean,
+  level integer
+);
+
+--
+-- Table structure for table `events`
+--
+DROP TABLE IF EXISTS events;
+CREATE TABLE events (
+  eid integer primary key auto_increment,
+  module varchar(32) NOT NULL,
+  user varchar(32) NOT NULL,
+  timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  msg text NOT NULL,
+  status varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+

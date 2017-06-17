@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block quickfeature %}
+        <div class="module">
+          <div id="WebTriggerDiv">
+            <form action="WebTrigger" method="POST">
+              <a href="{{ session.webhook }}" id="WebTriggerSub">
+                <img src="static/image/warning.png" />
+              </a>
+            </form>
+          </div> <!-- /startSDDiv -->
+        </div>
+{% endblock %}
+
